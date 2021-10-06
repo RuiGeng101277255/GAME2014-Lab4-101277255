@@ -392,6 +392,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HorizontalForce: 50
   VelDecay: 0.1
+  Pbounds:
+    Min: -1.9
+    Max: 1.9
 --- !u!1 &1463278058
 GameObject:
   m_ObjectHideFlags: 0

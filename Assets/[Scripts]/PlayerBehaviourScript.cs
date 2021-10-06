@@ -9,6 +9,8 @@ public class PlayerBehaviourScript : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float VelDecay;
 
+    public BoundsStruct Pbounds;
+
     private Rigidbody2D playerRB;
 
     // Start is called before the first frame update
@@ -35,6 +37,16 @@ public class PlayerBehaviourScript : MonoBehaviour
 
     private void CheckBounds()
     {
+        //Left
+        if (transform.position.x < Pbounds.Min)
+        {
+            transform.position = new Vector2(Pbounds.Min, transform.position.y);
+        }
 
+        //Right
+        if (transform.position.x > Pbounds.Max)
+        {
+            transform.position = new Vector2(Pbounds.Max, transform.position.y);
+        }
     }
 }
