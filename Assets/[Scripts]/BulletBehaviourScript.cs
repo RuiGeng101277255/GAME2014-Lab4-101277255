@@ -8,10 +8,13 @@ public class BulletBehaviourScript : MonoBehaviour
     [Range(0.0f, 0.5f)]
     public float speed;
     public BoundsStruct Bbounds;
+
+    private BulletManager bulletManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletManager = GameObject.FindObjectOfType<BulletManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +33,8 @@ public class BulletBehaviourScript : MonoBehaviour
     {
         if (transform.position.y < Bbounds.Max)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            bulletManager.ReturnBullet(this.gameObject);
         }
     }
 }

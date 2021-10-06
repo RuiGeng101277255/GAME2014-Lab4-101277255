@@ -13,14 +13,17 @@ public class EnemyBehaviourScript : MonoBehaviour
 
     [Header("Bullets")]
     public Transform bulletSpawn;
-    public GameObject bulletPrefab;
+    //public GameObject bulletPrefab;
     public int frameDelay;
+
+    private BulletManager bulletManager;
 
     // Start is called before the first frame update
     void Start()
     {
         randomSpeed = Random.Range(Ebounds.Min, Ebounds.Max);
         startPoint = Random.Range(StartRange.Min, StartRange.Max);
+        bulletManager = GameObject.FindObjectOfType<BulletManager>();
     }
 
     // Update is called once per frame
@@ -33,8 +36,10 @@ public class EnemyBehaviourScript : MonoBehaviour
     {
         if (Time.frameCount % frameDelay == 0)
         {
-            var tempBullet = Instantiate(bulletPrefab);
-            tempBullet.transform.position = bulletSpawn.position;
+            //var tempBullet = Instantiate(bulletPrefab);
+            //tempBullet.transform.position = bulletSpawn.position;
+
+            bulletManager.getBullet(bulletSpawn.position);
         }
     }
 }
