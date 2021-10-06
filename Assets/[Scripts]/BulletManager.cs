@@ -13,22 +13,33 @@ public class BulletManager : MonoBehaviour
     void Start()
     {
         bulletPool = new Queue<GameObject>(); // empty queue
-        buildPool();
+        //buildPool();
     }
 
     private void buildPool()
     {
         for (int i = 0; i < MaxBulletCount; i++)
         {
-            var tempBullet = Instantiate(bulletPrefab);
-            tempBullet.SetActive(false);
-            tempBullet.transform.SetParent(transform);
-            bulletPool.Enqueue(tempBullet);
+            AddBullet();
         }
+    }
+
+    private void AddBullet()
+    {
+        var tempBullet = Instantiate(bulletPrefab);
+        tempBullet.SetActive(false);
+        tempBullet.transform.SetParent(transform);
+        bulletPool.Enqueue(tempBullet);
     }
 
     public GameObject getBullet(Vector2 v)
     {
+        if (bulletPool.Count < 1)
+        {
+            AddBullet();
+            MaxBulletCount++;
+        }
+
         var tempBullet = bulletPool.Dequeue();
         tempBullet.transform.position = v;
         tempBullet.SetActive(true);
