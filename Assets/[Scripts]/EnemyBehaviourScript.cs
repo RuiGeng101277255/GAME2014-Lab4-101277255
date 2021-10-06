@@ -11,6 +11,11 @@ public class EnemyBehaviourScript : MonoBehaviour
     private float startPoint;
     private float randomSpeed;
 
+    [Header("Bullets")]
+    public Transform bulletSpawn;
+    public GameObject bulletPrefab;
+    public int frameDelay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +27,14 @@ public class EnemyBehaviourScript : MonoBehaviour
     void Update()
     {
         transform.position = new Vector2(Mathf.PingPong(Time.time, randomSpeed) + startPoint, transform.position.y);
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.frameCount % frameDelay == 0)
+        {
+            var tempBullet = Instantiate(bulletPrefab);
+            tempBullet.transform.position = bulletSpawn.position;
+        }
     }
 }
