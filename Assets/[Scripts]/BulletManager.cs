@@ -6,6 +6,7 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour
 {
     public Queue<GameObject> bulletPool;
+    public Queue<GameObject> PlayerBulletPool;
     public int MaxBulletCount;
     public GameObject bulletPrefab;
 
@@ -13,7 +14,7 @@ public class BulletManager : MonoBehaviour
     void Start()
     {
         bulletPool = new Queue<GameObject>(); // empty queue
-        //buildPool();
+        PlayerBulletPool = new Queue<GameObject>();
     }
 
     private void buildPool()
