@@ -6,15 +6,15 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour
 {
     public Queue<GameObject> bulletPool;
-    public Queue<GameObject> PlayerBulletPool;
     public int MaxBulletCount;
-    public GameObject bulletPrefab;
+
+    private BulletFactory BFactory;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletPool = new Queue<GameObject>(); // empty queue
-        PlayerBulletPool = new Queue<GameObject>();
+        BFactory = GetComponent<BulletFactory>();
     }
 
     private void buildPool()
@@ -27,9 +27,7 @@ public class BulletManager : MonoBehaviour
 
     private void AddBullet()
     {
-        var tempBullet = Instantiate(bulletPrefab);
-        tempBullet.SetActive(false);
-        tempBullet.transform.SetParent(transform);
+        var tempBullet = BFactory.createBullet(BulletType.ENEMY);
         bulletPool.Enqueue(tempBullet);
     }
 
