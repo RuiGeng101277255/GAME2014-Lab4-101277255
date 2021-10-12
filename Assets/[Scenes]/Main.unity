@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfc24330e75bae44a9bd190c0dbda3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxBulletCount: 0
-  bulletPrefab: {fileID: 2335765758825465981, guid: 3ef379ba1bf95c3498824b83aab1e250, type: 3}
+  EnemyBulletCount: 0
+  PlayerBulletCount: 0
 --- !u!114 &1463278062
 MonoBehaviour:
   m_ObjectHideFlags: 0

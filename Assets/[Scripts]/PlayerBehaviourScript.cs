@@ -8,15 +8,21 @@ public class PlayerBehaviourScript : MonoBehaviour
     public float HorizontalForce;
     [Range(0.0f, 1.0f)]
     public float VelDecay;
-
     public BoundsStruct Pbounds;
 
+    [Header("Player Attack")]
+    public Transform BulletSpawn;
+    public int FrameDelay;
+
     private Rigidbody2D playerRB;
+
+    private BulletManager bulletManager;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        bulletManager = GameObject.FindObjectOfType<BulletManager>();
     }
 
     // Update is called once per frame
@@ -24,6 +30,7 @@ public class PlayerBehaviourScript : MonoBehaviour
     {
         Move();
         CheckBounds();
+        PlayerFire();
     }
 
     private void Move()
@@ -47,6 +54,14 @@ public class PlayerBehaviourScript : MonoBehaviour
         if (transform.position.x > Pbounds.Max)
         {
             transform.position = new Vector2(Pbounds.Max, transform.position.y);
+        }
+    }
+
+    private void PlayerFire()
+    {
+        if ((Time.frameCount % FrameDelay == 0) &&(Input.GetAxisRaw("Jump") > 0))
+        {
+            bulletManager.getBullet(BulletSpawn.position, BulletType.PLAYER);
         }
     }
 }

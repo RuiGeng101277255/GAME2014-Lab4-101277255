@@ -190,3 +190,5 @@ MonoBehaviour:
   Pbounds:
     Min: -1.9
     Max: 1.9
+  BulletSpawn: {fileID: 1663775489}
+  FrameDelay: 5

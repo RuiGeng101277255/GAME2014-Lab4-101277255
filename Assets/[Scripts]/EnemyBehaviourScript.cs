@@ -13,7 +13,6 @@ public class EnemyBehaviourScript : MonoBehaviour
 
     [Header("Bullets")]
     public Transform bulletSpawn;
-    //public GameObject bulletPrefab;
     public int frameDelay;
 
     private BulletManager bulletManager;
@@ -39,7 +38,7 @@ public class EnemyBehaviourScript : MonoBehaviour
             //var tempBullet = Instantiate(bulletPrefab);
             //tempBullet.transform.position = bulletSpawn.position;
 
-            bulletManager.getBullet(bulletSpawn.position);
+            bulletManager.getBullet(bulletSpawn.position, BulletType.ENEMY);
         }
     }
 }
